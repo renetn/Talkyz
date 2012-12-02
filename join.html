@@ -245,6 +245,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="./js/jquery.xdomainajax.js"></script>
   </head>
 
   <body>
@@ -290,14 +293,22 @@
             <div class="carousel-caption">
 				<h1>Please enter your details.</h1>
 				<p>The conf ID should have been passed by the conference host.</p><br />
-						
-				<form name="input" action="participating.html" method="get">
-					<input type="text" class="span2 join" name="pseudo" placeholder="Pseudo"></input><br />
-					<input type="text" class="span2 join" name="email" placeholder="Email"></input><br />
-					<input type="text" class="span2 join" name="tel" placeholder="Telephone"></input><br />
-					<input type="text" class="span2 join" name="code" placeholder="Conference ID"></input><br />
+					
+				<form id="form_add_participant" name="input" action="" method="get">
+					<input id="pseudo" type="text" class="span2 join" name="pseudo" placeholder="Pseudo"></input><br />
+					<input id="tel" type="text" class="span2 join" name="tel" placeholder="Telephone"></input><br />
+					<input id="code" type="text" class="span2 join" name="code" placeholder="Conference ID"></input><br />
 					<input type="submit" value="Submit">
 				</form>
+
+				<script>
+$('#form_add_participant').submit(function() {
+	$.getJSON('http://talkiz.herokuapp.com/user/new/?pseudo=' + $('#pseudo').val() + '&code=' + $('#code').val() + '&telephone=' + $('#tel').val(), function(data) {
+		window.location='participating.html?pseudo=' + $('#pseudo').val() + '&code=' + $('#code').val();
+	});
+	return false;
+});
+				</script>				
 			</div>
           </div>
         </div>

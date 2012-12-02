@@ -287,12 +287,12 @@
     ================================================== -->
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
-        <div class="item active">	
+        <div class="item active">
           <img src="./img/splash.png" alt="">
           <div class="container">
             <div class="carousel-caption">
-				<h1 style="display: inline;">You have a question? Push the following button!</h1>
-				<img id="ask_question" src="./img/bouton_off_dc.png" style="width: 50px; height: 50px; padding: 10px; min-width: 50px;">
+				<h1 style="display: inline;">You will be soon allowed to ask your question.</h1>
+				<img id="cancel_question" src="./img/bouton_on_dc.png" style="width: 50px; height: 50px; padding: 10px; min-width: 50px;">
 				<script>
 					$(document).ready(function() {
 						$.urlParam = function(name){
@@ -300,9 +300,9 @@
 					    	return results[1] || 0;
 						}
 						
-						$("#ask_question").click(function(){
-							$.getJSON('http://talkiz.herokuapp.com/user/active/?pseudo=' + $.urlParam('pseudo') + '&code=' + $.urlParam('code') + '&active=1', function(data) {
-								window.location='participating_waiting.html?pseudo=' + $.urlParam('pseudo') + '&code=' + $.urlParam('code');
+						$("#cancel_question").click(function(){
+							$.getJSON('http://talkiz.herokuapp.com/user/active/?pseudo=' + $.urlParam('pseudo') + '&code=' + $.urlParam('code') + '&active=0', function(data) {
+								window.location='participating.html?pseudo=' + $.urlParam('pseudo') + '&code=' + $.urlParam('code');
 							});
 						});
 					});
